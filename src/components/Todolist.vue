@@ -1,5 +1,8 @@
 <script setup>
 import { ref } from 'vue';
+import axios from 'axios';
+import Login from './Login.vue';
+const info = ref([]);
 const newTodo = ref('');
 let storedTodos;
 localStorage.getItem('todos')
@@ -11,6 +14,10 @@ function addTodo() {
     todos.value.push({ complete: false, text: newTodo.value });
     newTodo.value = '';
   }
+  axios.get('/api').then(function (response) {
+    console.log(response);
+    info.value = response.data;
+  });
 }
 function removeAllTodos() {
   todos.value.splice(0, todos.value.length);
@@ -28,7 +35,6 @@ function updateStorage() {
 <template>
   <div class="container mx-auto px-10 md:px-0">
     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-      <div></div>
       <div>
         <div class="mt-10">
           <h1 class="text-5xl font-semibold text-gray-600">Todo List</h1>
@@ -67,10 +73,8 @@ function updateStorage() {
           <div class="mt-8 text-center">
             <div class="grid grid-cols-1 gap-3">
               <div>
-                <div class="h-full" v-if="todos.length === 0">
-                  <p class="text-gray-400">
-                    It appears you didn't added any To-Do.
-                  </p>
+                <div v-if="todos.length === 0">
+                  <Login />
                 </div>
               </div>
               <div
