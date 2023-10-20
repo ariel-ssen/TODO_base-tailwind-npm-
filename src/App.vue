@@ -1,13 +1,13 @@
 <script setup>
 // import HelloWorld from './components/HelloWorld.vue';
-import Login from './components/Login.vue';
+// import Login from './components/Login.vue';
 // import Sighin from './components/Signin.vue';
 import Todolist from './components/Todolist.vue';
 </script>
 
 <template>
   <div>
-    <h1 class="text-3xl font-bold underline">tailwindcss</h1>
+    <h1 class="text-3xl font-bold underline text-center">TODO LIST</h1>
     <!-- <a href="https://vitejs.dev" target="_blank">
       <img src="/vite.svg" class="logo" alt="Vite logo" />
     </a>
@@ -17,7 +17,7 @@ import Todolist from './components/Todolist.vue';
   </div>
   <!-- <HelloWorld msg="Vite + Vue" /> -->
   <Todolist />
-  <Login />
+  <!-- <Login /> -->
   <!-- <Sighin /> -->
 </template>
 
