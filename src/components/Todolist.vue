@@ -8,6 +8,16 @@ axios.get('/api').then(function (response) {
   console.log(response);
   info.value = response.data;
 });
+axios
+  .post('/api', {
+    content: 'Fred',
+  })
+  .then(function (response) {
+    console.log('what is true', response);
+  })
+  .catch(function (error) {
+    console.log('what is False', error);
+  });
 </script>
 
 <template>
@@ -17,12 +27,8 @@ axios.get('/api').then(function (response) {
         <div>
           <input
             class="border-2 outline-none py-2 px-2 shadow-md font-medium w-full rounded border-blue-300 hover:border-blue-600 focus:border-blue-600 focus:shadow-blue-200"
-            type="
-          "
-          />
-          <input
-            class="border-2 outline-none py-2 px-2 shadow-md font-medium w-full rounded border-blue-300 hover:border-blue-600 focus:border-blue-600 focus:shadow-blue-200"
             v-model="newTodo"
+            type="text"
           />
         </div>
         <div>
