@@ -3,21 +3,38 @@ import { ref } from 'vue';
 import axios from 'axios';
 
 const info = ref([]);
+const newTodo = ref('');
 
 axios.get('/api').then(function (response) {
   console.log(response);
   info.value = response.data;
 });
-axios
-  .post('/api', {
-    content: 'Fred',
-  })
-  .then(function (response) {
-    console.log('what is true', response);
-  })
-  .catch(function (error) {
-    console.log('what is False', error);
-  });
+
+function addTodo() {
+  axios
+    .post('/api', {
+      content: newTodo.value,
+    })
+    .then(function (response) {
+      console.log('POST 요청 성공', response);
+    })
+
+    .catch(function (error) {
+      console.error('POST 요청 실패', error);
+    });
+}
+
+// axios post code.
+// axios
+//   .post('/api', {
+//     content: '한글',
+//   })
+//   .then(function (response) {
+//     console.log('what is true', response);
+//   })
+//   .catch(function (error) {
+//     console.log('what is False', error);
+//   });
 </script>
 
 <template>
@@ -33,6 +50,7 @@ axios
         </div>
         <div>
           <button
+            type="submit"
             class="text-white py-2 px-4 shadow-md w-full rounded bg-blue-400 hover:bg-blue-600 font-semibold"
           >
             Add Todo
